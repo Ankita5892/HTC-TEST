@@ -21,4 +21,4 @@ jobs:
     - name: Build the Docker image
       run: docker build -t ankita5891/htc-work .
     - name: Push to Dockerhub
-      run: docker push ankita5891/cicd-pipeline:latest
+      run: docker push ankita5891/htc-work:latest
