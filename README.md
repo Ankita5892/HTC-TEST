@@ -1,2 +1,15 @@
 # HTC-TEST
 from infra to CICD app deploy 
+
+
+Public Cloud: AWS IaC: Terraform Containerization: Docker, Docker Hub (for artifact storage) CI/CD: GitHub Actions
+
+The infrastructure code is located under the infra-aws folder. You'll need to add your AWS key to test this.
+
+This application deployed on an AWS EC2 instance. The infrastructure is created using Terraform, consisting of three modules: VPC, subnet, and EC2. A Dockerfile is written to build the image, which runs on port 8080. The application is hosted on the EC2 instance created by Terraform, and GitHub Actions utilizes a self-hosted runner to deploy this application.
+
+In the CI stage, continuous integration is performed, where Docker login is configured using a repository secret variable, and the image is built. In the CD stage, the job is triggered once CI is completed. In the CD stage, the image is pulled from Docker Hub, the old container with the same name is deleted, and a new container is run on port 8080.
+
+ http://ec2-52-16-7-158.eu-west-1.compute.amazonaws.com:8080/ (its sample, you need to use yours ec2 endpoint )
+
+You can fork the repository and modify the JavaScript code to test CI and CD. Once you push your changes, the CI job will trigger, and once CI is completed, the CD job will trigger under Actions.
